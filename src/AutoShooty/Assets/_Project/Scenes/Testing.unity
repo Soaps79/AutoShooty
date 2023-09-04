@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000008159accd
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -474,6 +474,8 @@ MonoBehaviour:
   _currentHealth: 0
   _hitIgnoreTime: 0
   _damage: 0
+  _criticalChance: 0
+  _criticalMultiplier: 0
   Type: {fileID: 11400000, guid: a6e022db03b018948aaa3d1c6352c1bd, type: 2}
 --- !u!1 &1107806152
 GameObject:
@@ -580,6 +582,8 @@ MonoBehaviour:
   _currentHealth: 0
   _hitIgnoreTime: 0.5
   _damage: 5
+  _criticalChance: 0
+  _criticalMultiplier: 0
   Type: {fileID: 11400000, guid: ae5fa3536fcd16341a08db3f006c830c, type: 2}
 --- !u!60 &1553230229
 PolygonCollider2D:
@@ -746,8 +750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _normalPrefab: {fileID: 1605815464762563761, guid: faf85ed74451fa84390326a9d75a9d64, type: 3}
   _criticalPrefab: {fileID: 6714929540702685607, guid: 20bc15fb555257e4aa04095d09a25f3b, type: 3}
-  _moveTime: 3
-  _moveDistance: 5
+  _moveTime: 1.5
+  _moveDistance: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

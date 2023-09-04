@@ -1,6 +1,5 @@
 using UnityEngine;
 using QGame;
-using System;
 using TMPro;
 using DG.Tweening;
 
@@ -27,9 +26,9 @@ public class DamageTextGenerator : QScript
     private void HandleDamageTaken(float damage, bool isCritical)
     {
         var text = Instantiate(isCritical ? _criticalPrefab : _normalPrefab);
-        text.transform.position = transform.position;
+        text.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
         text.text = damage.ToString("N0");
         text.transform.DOMoveY(transform.position.y + _moveDistance, _moveTime)
-            .onComplete += () => { GameObject.Destroy(text); };
+            .onComplete += () => { Destroy(text.gameObject); };
     }
 }

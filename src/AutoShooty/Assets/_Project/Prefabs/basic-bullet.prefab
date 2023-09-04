@@ -152,6 +152,8 @@ MonoBehaviour:
   _currentHealth: 0
   _hitIgnoreTime: 0.25
   _damage: 10
+  _criticalChance: 0.5
+  _criticalMultiplier: 1
   Type: {fileID: 11400000, guid: 759f43e87fdf4eb478c2acf6f2929e19, type: 2}
 --- !u!50 &5527886722130952312
 Rigidbody2D:

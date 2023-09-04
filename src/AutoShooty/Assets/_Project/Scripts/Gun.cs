@@ -1,6 +1,5 @@
 using UnityEngine;
 using QGame;
-using static UnityEditor.PlayerSettings;
 
 public class Gun : QScript
 {

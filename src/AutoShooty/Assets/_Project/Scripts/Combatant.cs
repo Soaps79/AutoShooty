@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
+using Random = UnityEngine.Random;
+using TMPro;
+
 public class Combatant : QScript
 {
     [SerializeField]
@@ -14,6 +17,11 @@ public class Combatant : QScript
     private float _hitIgnoreTime;
     [SerializeField]
     private float _damage;
+
+    [SerializeField]
+    private float _criticalChance;
+    [SerializeField]
+    private float _criticalMultiplier;
 
     public CombatantType Type;
     private HashSet<string> _setToAffect;
@@ -40,10 +48,20 @@ public class Combatant : QScript
             || _timedOutEntities.Contains(combatant.gameObject.name))
             return;
 
-        combatant.TakeDamage(_damage, false);
+        ApplyDamage(combatant);
+
         _timedOutEntities.Add(combatant.gameObject.name);
         StopWatch.AddNode(combatant.gameObject.name, _hitIgnoreTime, true)
             .OnTick += () => { _timedOutEntities.Remove(combatant.gameObject.name); };
+    }
+
+    private void ApplyDamage(Combatant other)
+    {
+        var rand = Random.Range(0f, 1);
+        if (rand < _criticalChance)
+            other.TakeDamage(_damage + (_criticalMultiplier * _damage), true);
+        else
+            other.TakeDamage(_damage, false);
     }
 
     public void TakeDamage(float damage, bool isCritical)
