@@ -13,27 +13,21 @@ public class Gun : QScript
 
     private void Awake()
     {
-        StopWatch.AddNode("fire", _baseDelay).OnTick += Fire;
+        FireTowardsMousePointer();
+        StopWatch.AddNode("fire", _baseDelay).OnTick += FireTowardsMousePointer;
     }
 
-    private void Fire()
+    private void FireTowardsMousePointer()
     {
         var proj = Instantiate(_bullet, transform.position, Quaternion.identity);
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 heading = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
         heading = new Vector3(heading.x, heading.y, 0.0f).normalized;
-        //newBullet.Direction = heading.normalized;
 
-        //var angleVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //angleVector.z = 0;
-        //angleVector.Normalize();
         float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
-        //Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-
-        //var direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         proj.transform.eulerAngles = new Vector3(0, 0, angle - 90);
-        proj.Initialize(heading);
+        proj.Initialize(_bulletSpeed);
     }
 
     // random direction

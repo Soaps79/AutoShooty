@@ -5,25 +5,23 @@ using UnityEngine.EventSystems;
 public class Bullet : QScript
 {
     [SerializeField]
-    float _baseSpeed;
-
-    Vector3 _currentDirection;
-    float _currentSpeed;
+    private float _currentSpeed;
+    private Rigidbody2D _rigidBody;
 
     private void Awake()
     {
         OnEveryUpdate += Move;
-        _currentSpeed = _baseSpeed;
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    public void Initialize(Vector3 direction)
+    public void Initialize(float speed)
     {
-        _currentDirection = direction;
+        _currentSpeed = speed;
     }
 
     private void Move()
     {
-        transform.position += transform.up * _currentSpeed;
-        //transform.Translate(transform.up * _currentSpeed);
+        _rigidBody.MovePosition(transform.position += transform.up * _currentSpeed * Time.deltaTime);
+        //transform.position += transform.up * _currentSpeed * Time.deltaTime;
     }
 }

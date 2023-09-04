@@ -1,8 +1,10 @@
 using UnityEngine;
 using QGame;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
-public class Combatant : QScript, ICombatant
+public class Combatant : QScript
 {
     [SerializeField]
     private float _baseHealth;
@@ -13,28 +15,40 @@ public class Combatant : QScript, ICombatant
     [SerializeField]
     private float _damage;
 
+    public CombatantType Type;
+    private HashSet<string> _setToAffect;
+
     private HashSet<string> _timedOutEntities = new HashSet<string>();
 
     private void Awake()
     {
         _currentHealth = _baseHealth;
+        _setToAffect = Type.TypesToAffect.Select(i => i.Code).ToHashSet();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var combatant = collision.collider.GetComponent<Combatant>();
+    private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
+    private void OnTriggerStay2D(Collider2D collision) => HandleCollision(collision);
 
-        if (combatant == null || _timedOutEntities.Contains(combatant.gameObject.name))
+    public Action<float, bool> OnDamageTaken;
+
+    private void HandleCollision(Collider2D collider)
+    {
+        var combatant = collider.GetComponent<Combatant>();
+
+        if (combatant == null 
+            || !_setToAffect.Contains(combatant.Type.Code) 
+            || _timedOutEntities.Contains(combatant.gameObject.name))
             return;
 
-        combatant.TakeDamage(_damage);
+        combatant.TakeDamage(_damage, false);
         _timedOutEntities.Add(combatant.gameObject.name);
         StopWatch.AddNode(combatant.gameObject.name, _hitIgnoreTime, true)
             .OnTick += () => { _timedOutEntities.Remove(combatant.gameObject.name); };
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCritical)
     {
         _currentHealth -= damage;
+        OnDamageTaken?.Invoke(damage, isCritical);
     }    
 }
