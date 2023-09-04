@@ -1,7 +1,7 @@
 using UnityEngine;
 using QGame;
+using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : QScript
 {
     [SerializeField]
@@ -12,12 +12,18 @@ public class Bullet : QScript
 
     private void Awake()
     {
-        //OnEveryUpdate += Move;
-        //_currentSpeed = _baseSpeed;
+        OnEveryUpdate += Move;
+        _currentSpeed = _baseSpeed;
+    }
+
+    public void Initialize(Vector3 direction)
+    {
+        _currentDirection = direction;
     }
 
     private void Move()
     {
-        //transform.Translate(_currentDirection * _currentSpeed);
+        transform.position += transform.up * _currentSpeed;
+        //transform.Translate(transform.up * _currentSpeed);
     }
 }

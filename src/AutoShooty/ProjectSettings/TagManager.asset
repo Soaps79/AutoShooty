@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - player-proj
   - Water
   - UI
-  - 
-  - 
-  - 
+  - enemy-proj
+  - player
+  - enemy
   - 
   - 
   - 
