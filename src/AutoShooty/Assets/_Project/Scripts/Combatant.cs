@@ -5,7 +5,6 @@ using System.Linq;
 using System;
 
 using Random = UnityEngine.Random;
-using TMPro;
 
 public class Combatant : QScript
 {
@@ -28,6 +27,8 @@ public class Combatant : QScript
 
     private HashSet<string> _timedOutEntities = new HashSet<string>();
 
+    public Action<Combatant, float, bool> OnDamageTaken;
+
     private void Awake()
     {
         _currentHealth = _baseHealth;
@@ -36,8 +37,6 @@ public class Combatant : QScript
 
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
     private void OnTriggerStay2D(Collider2D collision) => HandleCollision(collision);
-
-    public Action<Combatant, float, bool> OnDamageTaken;
 
     private void HandleCollision(Collider2D collider)
     {
