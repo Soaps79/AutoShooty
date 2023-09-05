@@ -37,7 +37,7 @@ public class Combatant : QScript
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
     private void OnTriggerStay2D(Collider2D collision) => HandleCollision(collision);
 
-    public Action<float, bool> OnDamageTaken;
+    public Action<Combatant, float, bool> OnDamageTaken;
 
     private void HandleCollision(Collider2D collider)
     {
@@ -67,6 +67,6 @@ public class Combatant : QScript
     public void TakeDamage(float damage, bool isCritical)
     {
         _currentHealth -= damage;
-        OnDamageTaken?.Invoke(damage, isCritical);
+        OnDamageTaken?.Invoke(this, damage, isCritical);
     }    
 }

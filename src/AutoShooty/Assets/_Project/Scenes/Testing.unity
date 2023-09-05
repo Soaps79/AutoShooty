@@ -123,6 +123,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &204614711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204614712}
+  - component: {fileID: 204614714}
+  - component: {fileID: 204614713}
+  m_Layer: 0
+  m_Name: game-manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204614712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204614711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3913391, y: -0.40111768, z: -0.009014575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204614713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204614711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5b3a12b25a00744a069765b82abea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalPrefab: {fileID: 1605815464762563761, guid: faf85ed74451fa84390326a9d75a9d64, type: 3}
+  _criticalPrefab: {fileID: 6714929540702685607, guid: 20bc15fb555257e4aa04095d09a25f3b, type: 3}
+  _moveTime: 1.2
+  _moveDistance: 2
+--- !u!114 &204614714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204614711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b08a28c68e7604fa5e43760c9e989f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 1553230228}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,9 +620,8 @@ GameObject:
   - component: {fileID: 1553230229}
   - component: {fileID: 1553230228}
   - component: {fileID: 1553230232}
-  - component: {fileID: 1553230233}
   m_Layer: 8
-  m_Name: enemy_1
+  m_Name: enemy-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,22 +797,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1553230233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553230227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5b3a12b25a00744a069765b82abea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _normalPrefab: {fileID: 1605815464762563761, guid: faf85ed74451fa84390326a9d75a9d64, type: 3}
-  _criticalPrefab: {fileID: 6714929540702685607, guid: 20bc15fb555257e4aa04095d09a25f3b, type: 3}
-  _moveTime: 1.5
-  _moveDistance: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -761,3 +806,4 @@ SceneRoots:
   - {fileID: 835608509}
   - {fileID: 1553230231}
   - {fileID: 1107806155}
+  - {fileID: 204614712}
