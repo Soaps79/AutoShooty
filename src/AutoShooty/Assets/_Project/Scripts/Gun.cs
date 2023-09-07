@@ -12,7 +12,6 @@ public class Gun : QScript
 
     private void Awake()
     {
-        FireTowardsMousePointer();
         StopWatch.AddNode("fire", _baseDelay).OnTick += FireTowardsMousePointer;
     }
 

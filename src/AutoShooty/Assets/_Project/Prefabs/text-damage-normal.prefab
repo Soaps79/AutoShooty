@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5088167848230541886}
   - component: {fileID: 774784024383248397}
   - component: {fileID: 1605815464762563761}
+  - component: {fileID: 8699101251880263280}
   m_Layer: 0
   m_Name: text-damage-normal
   m_TagString: Untagged
@@ -35,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4.2949195, y: -0.9230137}
-  m_SizeDelta: {x: 20, y: 5}
+  m_SizeDelta: {x: 5, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &774784024383248397
 MeshRenderer:
@@ -126,8 +127,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.27265, y: 2.3733683, z: 9.297651, w: 2.1524258}
+  m_margin: {x: -0.018795013, y: -0.0041484833, z: -0.021116257, w: -0.0064692497}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -171,3 +172,11 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 774784024383248397}
   m_maskType: 0
+--- !u!33 &8699101251880263280
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257733559953868575}
+  m_Mesh: {fileID: 0}

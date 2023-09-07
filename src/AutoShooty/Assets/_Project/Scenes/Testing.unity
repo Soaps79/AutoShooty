@@ -291,7 +291,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d219c93c3624f574eb283842d5399660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseSpeed: 0.005
+  _baseSpeed: 0.02
   _speedModifier: 1
 --- !u!212 &835608508
 SpriteRenderer:
@@ -500,7 +500,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32758546, y: 0.6552677, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseDelay: 1
   _bullet: {fileID: 957465627065024105, guid: d22e1b5641ef9a04885e72734a55e92b, type: 3}
-  _bulletSpeed: 5
+  _bulletSpeed: 30
 --- !u!114 &835608511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +620,6 @@ GameObject:
   - component: {fileID: 1553230229}
   - component: {fileID: 1553230228}
   - component: {fileID: 1553230232}
-  - component: {fileID: 1553230234}
   - component: {fileID: 1553230233}
   m_Layer: 8
   m_Name: enemy-1
@@ -684,7 +683,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.505, y: 1.435}
+    oldSize: {x: 3.01, y: 2.87}
     newSize: {x: 1.505, y: 1.435}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -766,7 +765,7 @@ Transform:
   m_GameObject: {fileID: 1553230227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.169, y: 0.573, z: 0}
+  m_LocalPosition: {x: -7.462, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -843,7 +842,7 @@ MonoBehaviour:
       m_Calls: []
   delay: 0
   duration: 6
-  easeType: 6
+  easeType: 1
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -870,7 +869,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   loops: -1
   id: 
-  loopType: 0
+  loopType: 1
   orientType: 0
   lookAtTransform: {fileID: 0}
   lookAtPosition: {x: 0, y: 0, z: 0}
@@ -889,26 +888,22 @@ MonoBehaviour:
   tweenRigidbody: 0
   wps:
   - {x: -1.3216531, y: 0.59318364, z: 0}
-  - {x: -7.1723166, y: 0.56646824, z: 0}
   fullWps: []
   path:
     wpLengths:
     - 0
-    - 5.847382
-    - 5.850724
+    - 6.1403503
     wps:
-    - {x: -7.169, y: 0.573, z: 0}
+    - {x: -7.462, y: 0.6, z: 0}
     - {x: -1.3216531, y: 0.59318364, z: 0}
-    - {x: -7.1723166, y: 0.56646824, z: 0}
     type: 0
     subdivisionsXSegment: 10
-    subdivisions: 30
+    subdivisions: 20
     controlPoints: []
-    length: 11.698107
+    length: 6.1403503
     isFinalized: 1
     timesTable:
     - 0
-    - 0.49985713
     - 1
     lengthsTable: []
   inspectorMode: 0
@@ -920,23 +915,10 @@ MonoBehaviour:
   showIndexes: 1
   showWpLength: 0
   pathColor: {r: 1, g: 1, b: 1, a: 0.5}
-  lastSrcPosition: {x: -7.169, y: 0.573, z: 0}
+  lastSrcPosition: {x: -7.462, y: 0.6, z: 0}
   lastSrcRotation: {x: 0, y: 0, z: 0, w: 1}
   wpsDropdown: 0
   dropToFloorOffset: 0
---- !u!114 &1553230234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553230227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0addd7871433aa848b734e343b6b7eaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetX: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

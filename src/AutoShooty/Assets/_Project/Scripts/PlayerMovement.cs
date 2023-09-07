@@ -87,5 +87,6 @@ public class PlayerMovement : QScript
         }
         
         transform.Translate(movement * (_baseSpeed * (1 + _speedModifier)));
+        //Camera.main.transform.position = transform.position;
     }
 }
