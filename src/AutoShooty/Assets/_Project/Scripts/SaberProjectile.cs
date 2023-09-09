@@ -1,10 +1,8 @@
 using UnityEngine;
 using QGame;
 
-public class SaberMovement : QScript
+public class SaberProjectile : QScript
 {
-    public Transform _originTransform;
-
     [SerializeField]
     private Vector3 _origin;
     [SerializeField]
@@ -17,9 +15,14 @@ public class SaberMovement : QScript
 
     private void Awake()
     {
-        _origin = _originTransform.position;
         OnEveryUpdate += Spiral;
         OnEveryUpdate += Spin;
+    }
+
+    public void Initialize(ProjectileConfig config, Vector3 position)
+    {
+        _origin = position;
+        _speed = config.Speed;
     }
 
     private void Spiral()
