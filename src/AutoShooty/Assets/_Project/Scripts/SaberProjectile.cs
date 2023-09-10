@@ -1,6 +1,8 @@
 using UnityEngine;
 using QGame;
+using DG.Tweening;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class SaberProjectile : QScript
 {
     [SerializeField]
@@ -9,6 +11,10 @@ public class SaberProjectile : QScript
     private float _speed;
     [SerializeField]
     private float _angle;
+    [SerializeField]
+    private float _spawnScale;
+    [SerializeField]
+    private float _spawnScaleTime;
 
     [SerializeField]
     private float _localRotationSpeed;
@@ -23,6 +29,15 @@ public class SaberProjectile : QScript
     {
         _origin = position;
         _speed = config.Speed;
+        InitializeSpawnScaling();
+    }
+
+    private void InitializeSpawnScaling()
+    {
+        var intended = transform.localScale;
+        var start = intended * _spawnScale;
+        transform.localScale = start;
+        transform.DOScale(intended, _spawnScaleTime);
     }
 
     private void Spiral()

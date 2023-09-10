@@ -261,6 +261,8 @@ MonoBehaviour:
   _origin: {x: 0, y: 0, z: 0}
   _speed: 30
   _angle: 95
+  _spawnScale: 0
+  _spawnScaleTime: 2
   _localRotationSpeed: 500
 --- !u!114 &3355632015499148847
 MonoBehaviour:
