@@ -24,7 +24,7 @@ public class Gun : QScript
         heading = new Vector3(heading.x, heading.y, 0.0f).normalized;
 
         float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
-        proj.transform.eulerAngles = new Vector3(0, 0, angle - 90);
+        proj.transform.eulerAngles = new Vector3(0, 0, angle);
         proj.Initialize(_bulletSpeed);
     }
 

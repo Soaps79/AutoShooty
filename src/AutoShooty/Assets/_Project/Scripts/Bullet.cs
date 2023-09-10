@@ -21,7 +21,6 @@ public class Bullet : QScript
 
     private void Move()
     {
-        _rigidBody.MovePosition(transform.position += transform.up * _currentSpeed * Time.deltaTime);
-        //transform.position += transform.up * _currentSpeed * Time.deltaTime;
+        _rigidBody.MovePosition(transform.position += transform.right * _currentSpeed * Time.deltaTime);
     }
 }
