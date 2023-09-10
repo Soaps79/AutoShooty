@@ -30,6 +30,8 @@ public class SaberProjectile : QScript
         _origin = position;
         _speed = config.Speed;
         InitializeSpawnScaling();
+
+        StopWatch.AddNode("t", config.Lifetime, true).OnTick += () => { Destroy(gameObject); };
     }
 
     private void InitializeSpawnScaling()

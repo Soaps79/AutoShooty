@@ -7,4 +7,5 @@ public class ProjectileConfig
     public float CriticalChance;
     public float CriticalMultiplier;
     public float HitIgnoreTime;
+    public float Lifetime;
 }

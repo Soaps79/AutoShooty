@@ -30,6 +30,7 @@ public class Combatant : QScript
     private HashSet<string> _timedOutEntities = new HashSet<string>();
 
     public Action<Combatant, float, bool> OnDamageTaken;
+    public Action<Combatant, Combatant> OnDeath;
 
     private void Awake()
     {
@@ -51,23 +52,30 @@ public class Combatant : QScript
 
         ApplyDamage(combatant);
 
-        _timedOutEntities.Add(combatant.gameObject.name);
-        StopWatch.AddNode(combatant.gameObject.name, _hitIgnoreTime, true)
-            .OnTick += () => { _timedOutEntities.Remove(combatant.gameObject.name); };
+        var name = combatant.gameObject.name;
+        _timedOutEntities.Add(name);
+        StopWatch.AddNode(name, _hitIgnoreTime, true)
+            .OnTick += () => { _timedOutEntities.Remove(name); };
     }
 
     private void ApplyDamage(Combatant other)
     {
         var rand = Random.Range(0f, 1);
         if (rand < _criticalChance)
-            other.TakeDamage(_damage + (_criticalMultiplier * _damage), true);
+            other.TakeDamage(_damage + (_criticalMultiplier * _damage), true, this);
         else
-            other.TakeDamage(_damage, false);
+            other.TakeDamage(_damage, false, this);
     }
 
-    public void TakeDamage(float damage, bool isCritical)
+    public void TakeDamage(float damage, bool isCritical, Combatant other)
     {
         _currentHealth -= damage;
         OnDamageTaken?.Invoke(this, damage, isCritical);
+
+        if(_currentHealth <= 0f)
+        {
+            OnDeath?.Invoke(this, other);
+            Destroy(gameObject);
+        }
     }    
 }

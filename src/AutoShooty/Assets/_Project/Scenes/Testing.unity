@@ -216,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b08a28c68e7604fa5e43760c9e989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1553230228}
+  StaticEnemies:
+  - {fileID: 1553230236}
+  - {fileID: 277973084}
   PlayerObject: {fileID: 835608506}
 --- !u!114 &204614715
 MonoBehaviour:
@@ -1136,6 +1138,7 @@ MonoBehaviour:
     CriticalChance: 10
     CriticalMultiplier: 0.5
     HitIgnoreTime: 0.2
+    Lifetime: 10
 --- !u!1 &1107806152
 GameObject:
   m_ObjectHideFlags: 0

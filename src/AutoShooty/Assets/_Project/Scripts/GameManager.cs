@@ -1,10 +1,13 @@
 using UnityEngine;
 using QGame;
 using Messaging;
+using System.Linq;
+using System.Collections.Generic;
 
 public class GameManager : QScript
 {
-    public Combatant Enemy;
+    public List<EnemyBase> StaticEnemies;
+
     public GameObject PlayerObject;
 
     public static GameObject Player;
@@ -19,5 +22,12 @@ public class GameManager : QScript
         OnEveryUpdate += () => messageHub.Update();
 
         Player = PlayerObject;
+
+        if (StaticEnemies.Any())
+        {
+            StaticEnemies.ForEach(
+                e => Locator.MessageHub.QueueMessage(EnemyBase.MessageName,
+                new EnemySpawnedMessageArgs { Enemy = e }));
+        }
     }
 }
