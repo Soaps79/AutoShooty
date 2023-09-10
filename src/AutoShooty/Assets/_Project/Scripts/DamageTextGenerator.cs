@@ -2,8 +2,9 @@ using UnityEngine;
 using QGame;
 using TMPro;
 using DG.Tweening;
+using Messaging;
 
-public class DamageTextGenerator : QScript
+public class DamageTextGenerator : QScript, IMessageListener
 {
     [SerializeField]
     private TMP_Text _normalPrefab;
@@ -13,6 +14,13 @@ public class DamageTextGenerator : QScript
     private float _moveTime;
     [SerializeField]
     private float _moveDistance;
+
+    public string Name => throw new System.NotImplementedException();
+
+    private void Start()
+    {
+        Locator.MessageHub.AddListener(this, EnemyBase.MessageName);
+    }
 
     public void HandleEnemyCreated(Combatant combatant)
     {
@@ -29,5 +37,13 @@ public class DamageTextGenerator : QScript
         text.text = damage.ToString("N0");
         text.transform.DOMoveY(startHeight + _moveDistance, _moveTime)
             .onComplete += () => { Destroy(text.gameObject); };
+    }
+
+    public void HandleMessage(string type, MessageArgs args)
+    {
+        if(type == EnemyBase.MessageName && args is EnemySpawnedMessageArgs a)
+        {
+            HandleEnemyCreated(a.Enemy.GetComponent<Combatant>()); 
+        }
     }
 }

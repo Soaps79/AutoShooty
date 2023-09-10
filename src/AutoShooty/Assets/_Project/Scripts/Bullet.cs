@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 public class Bullet : QScript
 {
     [SerializeField]
+    private float _lifetime;
+    private float _elapsedLifetime;
     private float _currentSpeed;
     private Rigidbody2D _rigidBody;
 
@@ -22,5 +24,8 @@ public class Bullet : QScript
     private void Move()
     {
         _rigidBody.MovePosition(transform.position += transform.right * _currentSpeed * Time.deltaTime);
+        _elapsedLifetime += Time.deltaTime;
+        if(_elapsedLifetime > _lifetime)
+            Destroy(gameObject);
     }
 }
