@@ -16,6 +16,8 @@ public class Combatant : QScript
     private float _hitIgnoreTime;
     [SerializeField]
     private float _damage;
+    [SerializeField]
+    private bool _isInvincible;
 
     [SerializeField]
     private float _criticalChance;

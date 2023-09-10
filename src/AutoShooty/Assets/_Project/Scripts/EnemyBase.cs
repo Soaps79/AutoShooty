@@ -13,6 +13,6 @@ public class EnemyBase : QScript
 
     private void Start()
     {
-        Locator.MessageHub.QueueMessage(MessageName, new EnemySpawnedMessageArgs { Enemy = this });
+        
     }
 }
