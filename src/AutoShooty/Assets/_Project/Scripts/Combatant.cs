@@ -72,7 +72,7 @@ public class Combatant : QScript
         _currentHealth -= damage;
         OnDamageTaken?.Invoke(this, damage, isCritical);
 
-        if(_currentHealth <= 0f)
+        if(!_isInvincible && _currentHealth <= 0f)
         {
             OnDeath?.Invoke(this, other);
             Destroy(gameObject);
