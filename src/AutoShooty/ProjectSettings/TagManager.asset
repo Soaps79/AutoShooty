@@ -14,10 +14,10 @@ TagManager:
   - enemy-proj
   - player
   - enemy
-  - 
-  - 
-  - 
-  - 
+  - pickup-magnet
+  - pickup-reach
+  - pickups-magnettable
+  - pickups
   - 
   - 
   - 
