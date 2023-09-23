@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1651995143691338979}
   - component: {fileID: 5118838919474846784}
   - component: {fileID: 7147357983994694166}
+  - component: {fileID: 2195583290155042508}
   m_Layer: 8
   m_Name: fly-stutter
   m_TagString: Untagged
@@ -221,3 +222,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e957443ae9b740afd693df762bac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2195583290155042508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786260810483547697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98533debe930db64f88a86da312519e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickupInfo:
+    Type: 0
+    Amount: 1

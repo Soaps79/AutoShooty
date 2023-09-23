@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 204614714}
   - component: {fileID: 204614713}
   - component: {fileID: 204614715}
+  - component: {fileID: 204614716}
   m_Layer: 0
   m_Name: game-manager
   m_TagString: Untagged
@@ -238,6 +239,19 @@ MonoBehaviour:
   _spawnCountIncrement: 2
   _enemyPrefab: {fileID: 7147357983994694166, guid: 5e5e1b2588a245d4db97550569524be3, type: 3}
   _cameraExtents: {fileID: 426868453}
+--- !u!114 &204614716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204614711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4b18a5aa0b8e94fba3342c628f3efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xpPrefab: {fileID: 0}
 --- !u!1 &277973076
 GameObject:
   m_ObjectHideFlags: 0

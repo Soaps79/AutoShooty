@@ -7,7 +7,7 @@ public class PickupReach : QScript
     public float ReachDistance;
     private CircleCollider2D _collider;
 
-    public int PickedUpCount;
+    public int XpCount;
 
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
 
@@ -27,7 +27,7 @@ public class PickupReach : QScript
 
     private void HandlePickup(Pickup pickup)
     {
-        PickedUpCount++;
+        XpCount += pickup.Value;
         Destroy(pickup.gameObject);
     }
 }
