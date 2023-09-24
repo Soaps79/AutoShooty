@@ -7,14 +7,16 @@ public enum StatModifierType
     CritChance,
     CritMultiplier,
     AreaOfEffect,
-    Multicast
+    Multicast,
+    IncreasedCastSpeed
 }
 
 public class Stat
 {
     public float LocalValue;
     public Stat Parent;
-    public float CurrentValue => LocalValue + Parent.CurrentValue;
+    public float CurrentValue => Parent != null 
+        ? LocalValue + Parent.CurrentValue : LocalValue;
 }
 
 public class StatModifier

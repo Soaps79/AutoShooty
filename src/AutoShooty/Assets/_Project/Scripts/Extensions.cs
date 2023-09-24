@@ -1,11 +1,17 @@
 using Messaging;
 using QGame;
+using System;
 
 public static class Locator
 {
     public static IMessageHub MessageHub
     {
         get { return ServiceLocator.Get<IMessageHub>(); }
+    }
+
+    public static StatModifierDistributor ModifierDistributor
+    {
+        get { return ServiceLocator.Get<StatModifierDistributor>(); }
     }
 }
 
@@ -17,6 +23,14 @@ public static class ServiceInitializer
     public static void Initialize()
     {
         InitializeMessaging();
+        InitializeModifierDistributor();
+    }
+
+    private static void InitializeModifierDistributor()
+    {
+        var existing = Locator.ModifierDistributor;
+        if (existing == null)
+            ServiceLocator.Register<StatModifierDistributor>(new StatModifierDistributor());
     }
 
     // manual initialization

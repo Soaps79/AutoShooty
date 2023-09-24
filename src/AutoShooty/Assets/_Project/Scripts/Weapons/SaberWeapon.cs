@@ -1,23 +1,19 @@
 using UnityEngine;
 using QGame;
 
-public class SaberWeapon : QScript
+public class SaberWeapon : WeaponBase
 {
     [SerializeField]
     private SaberProjectile _prefabProjectile;
     [SerializeField]
-    private float _baseDelay;
-    [SerializeField]
     private ProjectileConfig _projectileConfig;
 
-    private void Awake()
-    {
-        StopWatch.AddNode("fire", _baseDelay).OnTick += Fire;
-    }
+    public override string Id => "saber";
 
-    private void Fire()
+    protected override void Fire()
     {
         var proj = Instantiate(_prefabProjectile, transform.position, Quaternion.identity);
+        proj.Combatant.Initialize(_modifiers.GetDamageCalc());
         proj.Initialize(_projectileConfig, new Vector3(transform.position.x + 1, transform.position.y + 1, transform.position.z));
     }
 }

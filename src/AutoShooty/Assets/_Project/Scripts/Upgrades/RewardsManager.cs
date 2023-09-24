@@ -20,7 +20,7 @@ public class RewardsManager : QScript
     private void Awake()
     {
         OptionsViewModel.OnRewardChosen += OnRewardChosen;
-        OptionsViewModel.Initialize(Options);
+        OnNextUpdate += () => OptionsViewModel.Initialize(Options);
     }
 
     public void OnXpGain(int amount)

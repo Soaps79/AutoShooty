@@ -29,13 +29,21 @@ public class Combatant : QScript
 
     private HashSet<string> _timedOutEntities = new HashSet<string>();
 
+    
+
     public Action<Combatant, float, bool> OnDamageTaken;
     public Action<Combatant, Combatant> OnDeath;
+    private DamageCalc _damageCalc;
 
     private void Awake()
     {
         _currentHealth = _baseHealth;
         _setToAffect = Type.TypesToAffect.Select(i => i.Code).ToHashSet();
+    }
+
+    public void Initialize(DamageCalc calc)
+    {
+        _damageCalc = calc;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
@@ -60,11 +68,8 @@ public class Combatant : QScript
 
     private void ApplyDamage(Combatant other)
     {
-        var rand = Random.Range(0f, 1);
-        if (rand < _criticalChance)
-            other.TakeDamage(_damage + (_criticalMultiplier * _damage), true, this);
-        else
-            other.TakeDamage(_damage, false, this);
+        var roll = _damageCalc.Roll();
+        other.TakeDamage(roll.damage, roll.isCritical, this);
     }
 
     public void TakeDamage(float damage, bool isCritical, Combatant other)

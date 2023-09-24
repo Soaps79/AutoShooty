@@ -13,6 +13,8 @@ public class GameManager : QScript
     public PickupReach PickupReach;
     public RewardsManager RewardsManager;
 
+    
+
     private void Awake()
     {
         ServiceInitializer.Initialize();

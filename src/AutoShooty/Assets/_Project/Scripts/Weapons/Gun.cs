@@ -1,18 +1,18 @@
 using UnityEngine;
 using QGame;
 
-public class Gun : QScript
+public class Gun : WeaponBase
 {
-    [SerializeField]
-    private float _baseDelay;
     [SerializeField]
     private Bullet _bullet;
     [SerializeField]
     private float _bulletSpeed;
 
-    private void Awake()
+    public override string Id => "gun";
+
+    protected override void Fire()
     {
-        StopWatch.AddNode("fire", _baseDelay).OnTick += FireTowardsMousePointer;
+        FireTowardsMousePointer();
     }
 
     private void FireTowardsMousePointer()
@@ -26,6 +26,7 @@ public class Gun : QScript
         float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
         proj.transform.eulerAngles = new Vector3(0, 0, angle);
         proj.Initialize(_bulletSpeed);
+        proj.Combatant.Initialize(_modifiers.GetDamageCalc());
     }
 
     // random direction
