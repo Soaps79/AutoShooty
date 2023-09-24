@@ -15,6 +15,7 @@ public class WeaponCaddy : QScript
     private void Awake()
     {
         _globalTable = StatModifierHolder.GenerateWeaponStats("Global");
+        Locator.ModifierDistributor.Register(_globalTable);
     }
 
     private void Start()

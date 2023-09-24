@@ -20,8 +20,10 @@ public class StatModifierHolder
 
     public DamageCalc GetDamageCalc()
     {
-        return new DamageCalc(
-            _statTable[StatModifierType.MoreDamage].CurrentValue,
+        var damage = _statTable[StatModifierType.MoreDamage].CurrentValue 
+            + _statTable[StatModifierType.MoreDamage].CurrentValue * _statTable[StatModifierType.IncreasedDamage].CurrentValue;
+
+        return new DamageCalc( damage,
             _statTable[StatModifierType.CritChance].CurrentValue,
             _statTable[StatModifierType.CritMultiplier].CurrentValue);
     }

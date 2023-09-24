@@ -265,9 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a21e368b596dd34fb925f2372210428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnDelay: 10
-  _minSpawn: 5
-  _maxSpawn: 10
+  _spawnDelay: 5
+  _minSpawn: 10
+  _maxSpawn: 20
   _spawnCountIncrement: 2
   _enemyPrefab: {fileID: 7147357983994694166, guid: 5e5e1b2588a245d4db97550569524be3, type: 3}
   _cameraExtents: {fileID: 1539625908}
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentXp: 0
-  _xpForNextLevel: 5
+  _xpForNextLevel: 10
   _accruedXp: 0
   _accruedLevel: 0
   Options:

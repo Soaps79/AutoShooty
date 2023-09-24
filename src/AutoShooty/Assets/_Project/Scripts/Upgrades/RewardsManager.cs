@@ -49,6 +49,7 @@ public class RewardsManager : QScript
 
     private void OnRewardChosen(StatRewardOption option)
     {
-        Debug.Log($"reward chosen {option.name}");
+        Locator.ModifierDistributor.HandleModifier(
+            new StatModifier { ConsumerId = "Global", Type = option.Type, Amount = option.Value });
     }
 }
