@@ -13,11 +13,15 @@ public class GameManager : QScript
     public PickupReach PickupReach;
     public RewardsManager RewardsManager;
 
-    
+    public static StatModifierHolder GlobalStats { get; private set; }
+    public static string GlobalName => "global";
 
     private void Awake()
     {
         ServiceInitializer.Initialize();
+
+        GlobalStats = StatModifierHolder.GenerateWeaponStats(GlobalName);
+        Locator.ModifierDistributor.Register(GlobalStats);
 
         var messageHub = Locator.MessageHub as MessageHub;
         if (messageHub == null)

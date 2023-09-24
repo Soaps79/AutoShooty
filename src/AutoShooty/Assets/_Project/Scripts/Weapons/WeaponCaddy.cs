@@ -9,13 +9,9 @@ public class WeaponCaddy : QScript
     [SerializeField]
     private List<WeaponBase> _currentWeapons;
 
-    private StatModifierHolder _globalTable;
-
-
     private void Awake()
     {
-        _globalTable = StatModifierHolder.GenerateWeaponStats("Global");
-        Locator.ModifierDistributor.Register(_globalTable);
+        
     }
 
     private void Start()
@@ -30,7 +26,7 @@ public class WeaponCaddy : QScript
 
     public void RegisterNewWeapon(WeaponBase weapon)
     {
-        weapon.Initialize(_globalTable);
+        weapon.Initialize(GameManager.GlobalStats);
         _currentWeapons.Add(weapon);
     }    
 }

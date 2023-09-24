@@ -7,6 +7,8 @@ public class StatModifierHolder
     private readonly Dictionary<StatModifierType, Stat> _statTable 
         = new Dictionary<StatModifierType, Stat>();
 
+    public Action<StatModifierHolder> OnUpdateEvent;
+
     public StatModifierHolder(string name)
     {
         Name = name;
@@ -18,6 +20,8 @@ public class StatModifierHolder
         set => _statTable[key] = value;
     }
 
+    public bool ContainsKey(StatModifierType type) => _statTable.ContainsKey(type);
+
     public DamageCalc GetDamageCalc()
     {
         var damage = _statTable[StatModifierType.MoreDamage].CurrentValue 
@@ -26,6 +30,11 @@ public class StatModifierHolder
         return new DamageCalc( damage,
             _statTable[StatModifierType.CritChance].CurrentValue,
             _statTable[StatModifierType.CritMultiplier].CurrentValue);
+    }
+
+    public void AlertUpdate()
+    {
+        OnUpdateEvent?.Invoke(this);
     }
 
     public static StatModifierHolder GenerateWeaponStats(string name)

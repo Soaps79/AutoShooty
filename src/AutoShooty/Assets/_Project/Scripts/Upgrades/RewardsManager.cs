@@ -1,7 +1,6 @@
 using UnityEngine;
 using QGame;
 using System.Collections.Generic;
-using System;
 
 public class RewardsManager : QScript
 {
@@ -50,6 +49,6 @@ public class RewardsManager : QScript
     private void OnRewardChosen(StatRewardOption option)
     {
         Locator.ModifierDistributor.HandleModifier(
-            new StatModifier { ConsumerId = "Global", Type = option.Type, Amount = option.Value });
+            new StatModifier { ConsumerId = GameManager.GlobalName, Type = option.Type, Amount = option.Value });
     }
 }

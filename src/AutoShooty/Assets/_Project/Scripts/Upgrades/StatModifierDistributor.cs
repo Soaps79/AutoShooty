@@ -24,7 +24,11 @@ public class StatModifierDistributor
     {
         try
         {
-            _subscribers[modifier.ConsumerId][modifier.Type].LocalValue += modifier.Amount;
+            if(_subscribers[modifier.ConsumerId][modifier.Type] != null)
+            {
+                _subscribers[modifier.ConsumerId][modifier.Type].LocalValue += modifier.Amount;
+                _subscribers[modifier.ConsumerId].AlertUpdate();
+            }
         }
         catch
         {
