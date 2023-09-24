@@ -7,10 +7,11 @@ using System.Collections.Generic;
 public class GameManager : QScript
 {
     public List<EnemyBase> StaticEnemies;
-
     public GameObject PlayerObject;
-
     public static GameObject Player;
+
+    public PickupReach PickupReach;
+    public RewardsManager RewardsManager;
 
     private void Awake()
     {
@@ -22,6 +23,9 @@ public class GameManager : QScript
         OnEveryUpdate += () => messageHub.Update();
 
         Player = PlayerObject;
+
+        // gross, but they have no real reason/way to meet otherwise yet
+        PickupReach.OnXpGain += RewardsManager.OnXpGain;
 
         if (StaticEnemies.Any())
         {

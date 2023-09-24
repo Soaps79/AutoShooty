@@ -2,7 +2,6 @@
 {
 	public interface IMessageListener
 	{
-		string Name { get; }
 		void HandleMessage(string type, MessageArgs args);
 	}
 

@@ -1,20 +1,15 @@
 using UnityEngine;
 using QGame;
+using System;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class PickupReach : QScript
 {
     public float ReachDistance;
-    private CircleCollider2D _collider;
-
-    public int XpCount;
 
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision);
 
-    private void Awake()
-    {
-        _collider = GetComponent<CircleCollider2D>();
-    }
+    public Action<int> OnXpGain;
 
     private void HandleCollision(Collider2D collision)
     {
@@ -27,7 +22,7 @@ public class PickupReach : QScript
 
     private void HandlePickup(Pickup pickup)
     {
-        XpCount += pickup.Value;
+        OnXpGain?.Invoke(pickup.Value);
         Destroy(pickup.gameObject);
     }
 }
