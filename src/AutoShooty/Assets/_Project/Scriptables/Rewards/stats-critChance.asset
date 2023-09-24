@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: stats-critChance
   m_EditorClassIdentifier: 
   Type: 4
-  Value: 20
+  Value: 0.2
+  IsPercentage: 1

@@ -46,24 +46,29 @@ public class RewardsOptionsViewModel : QScript
         switch (option.Type)
         {
             case StatModifierType.Health:
-                return $"Increase Health by {option.Value}";
+                return $"Increase Health by {GetDisplayValue(option)}";
             case StatModifierType.MovementSpeed:
-                return $"Increase Movement Speed by {option.Value}";
+                return $"Increase Movement Speed by {GetDisplayValue(option)}";
             case StatModifierType.MoreDamage:
-                return $"Increase Damage by {option.Value}";
+                return $"Increase Damage by {GetDisplayValue(option)}";
             case StatModifierType.IncreasedDamage:
-                return $"Increase Damage by {option.Value}%";
+                return $"Increase Damage by {GetDisplayValue(option)}%";
             case StatModifierType.CritChance:
-                return $"Increase Critical Chance by {option.Value}%";
+                return $"Increase Critical Chance by {GetDisplayValue(option)}%";
             case StatModifierType.CritMultiplier:
-                return $"Increase Critical Multiplier by {option.Value}%";
+                return $"Increase Critical Multiplier by {GetDisplayValue(option)}%";
             case StatModifierType.AreaOfEffect:
-                return $"Increase Are of Effect by {option.Value}%";
+                return $"Increase Are of Effect by {GetDisplayValue(option)}%";
             case StatModifierType.Multicast:
-                return $"Increase Multicast Chance by {option.Value}%";
+                return $"Increase Multicast Chance by {GetDisplayValue(option)}%";
             default:
                 return "";
         }
+    }
+
+    private float GetDisplayValue(StatRewardOption option)
+    {
+        return option.IsPercentage ? option.Value * 100 : option.Value;
     }
 
     private void OnSelection(StatRewardOption option)

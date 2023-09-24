@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseStats:
     Damage: 10
-    CritChance: 10
-    CritMultiplier: 50
+    CritChance: 0.1
+    CritMultiplier: 0.5
     IncreasedCastSpeed: 0
     AreaOfEffect: 0
     Multicast: 0

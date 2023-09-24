@@ -5,7 +5,8 @@ using QGame;
 public class StatRewardOption : ScriptableObject
 {
     public StatModifierType Type;
-    public int Value;
+    public float Value;
+    public bool IsPercentage;
 
     private void Awake()
     {
