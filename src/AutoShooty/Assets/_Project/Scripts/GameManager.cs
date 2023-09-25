@@ -8,10 +8,8 @@ using Cinemachine;
 public class GameManager : QScript
 {
     public List<EnemyBase> StaticEnemies;
-    public GameObject PlayerObject;
-    public static GameObject Player;
 
-    public PickupReach PickupReach;
+    
     public RewardsManager RewardsManager;
 
     public static StatModifierHolder GlobalStats { get; private set; }
@@ -19,6 +17,11 @@ public class GameManager : QScript
 
     [SerializeField]
     private CinemachineVirtualCamera _camera;
+    [SerializeField]
+    private PickupReach _pickupReach;
+    [SerializeField]
+    private GameObject _playerPrefab;
+    public static GameObject Player { get; private set; }
 
     private void Awake()
     {
@@ -27,16 +30,11 @@ public class GameManager : QScript
         GlobalStats = StatModifierHolder.GenerateWeaponStats(GlobalName);
         Locator.ModifierDistributor.Register(GlobalStats);
 
-        var messageHub = Locator.MessageHub as MessageHub;
-        if (messageHub == null)
-            throw new UnityException("MessageHub could not be found");
-        OnEveryUpdate += () => messageHub.Update();
-
-        Player = PlayerObject;
-        _camera.Follow = Player.transform;
+        CreatePlayer();
+        RegisterMessageHub();
 
         // gross, but they have no real reason/way to meet otherwise yet
-        PickupReach.OnXpGain += RewardsManager.OnXpGain;
+        _pickupReach.OnXpGain += RewardsManager.OnXpGain;
 
         if (StaticEnemies.Any())
         {
@@ -44,5 +42,20 @@ public class GameManager : QScript
                 e => Locator.MessageHub.QueueMessage(EnemyBase.MessageName,
                 new EnemySpawnedMessageArgs { Enemy = e }));
         }
+    }
+
+    private void RegisterMessageHub()
+    {
+        var messageHub = Locator.MessageHub as MessageHub
+                    ?? throw new UnityException("MessageHub could not be found");
+        OnEveryUpdate += () => messageHub.Update();
+    }
+
+    private void CreatePlayer()
+    {
+        Player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+        Player.name = "player 2222";
+        _pickupReach = Player.GetComponentInChildren<PickupReach>();
+        _camera.Follow = Player.transform;
     }
 }
