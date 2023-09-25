@@ -3,6 +3,7 @@ using QGame;
 using Messaging;
 using System.Linq;
 using System.Collections.Generic;
+using Cinemachine;
 
 public class GameManager : QScript
 {
@@ -15,6 +16,9 @@ public class GameManager : QScript
 
     public static StatModifierHolder GlobalStats { get; private set; }
     public static string GlobalName => "global";
+
+    [SerializeField]
+    private CinemachineVirtualCamera _camera;
 
     private void Awake()
     {
@@ -29,6 +33,7 @@ public class GameManager : QScript
         OnEveryUpdate += () => messageHub.Update();
 
         Player = PlayerObject;
+        _camera.Follow = Player.transform;
 
         // gross, but they have no real reason/way to meet otherwise yet
         PickupReach.OnXpGain += RewardsManager.OnXpGain;
