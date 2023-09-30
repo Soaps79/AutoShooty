@@ -65,5 +65,10 @@ public class GameManager : QScript
             var instance = Instantiate(wep, Player.WeaponCaddy.transform);
             Player.WeaponCaddy.RegisterNewWeapon(instance);
         }
+
+        foreach(var stat in _characterConfig.StartingModifiers)
+        {
+            Locator.ModifierDistributor.HandleModifier(stat.Type, GlobalName, stat.Amount);
+        }
     }
 }

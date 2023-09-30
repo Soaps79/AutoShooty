@@ -22,17 +22,22 @@ public class StatModifierDistributor
 
     public void HandleModifier(StatModifier modifier)
     {
+        HandleModifier(modifier.Type, modifier.ConsumerId, modifier.Amount);
+    }
+
+    public void HandleModifier(StatModifierType type, string id, float amount)
+    {
         try
         {
-            if(_subscribers[modifier.ConsumerId][modifier.Type] != null)
+            if(_subscribers[id][type] != null)
             {
-                _subscribers[modifier.ConsumerId][modifier.Type].LocalValue += modifier.Amount;
-                _subscribers[modifier.ConsumerId].AlertUpdate();
+                _subscribers[id][type].LocalValue += amount;
+                _subscribers[id].AlertUpdate();
             }
         }
         catch
         {
-            Debug.Log($"Modifier requested for missing stat {modifier.Type} on {modifier.ConsumerId}");
+            Debug.Log($"Modifier requested for missing stat {type} on {id}");
         }
-    }    
+    }
 }
