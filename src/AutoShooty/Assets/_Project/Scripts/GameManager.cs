@@ -29,7 +29,7 @@ public class GameManager : QScript
     {
         ServiceInitializer.Initialize();
 
-        GlobalStats = StatModifierHolder.GenerateWeaponStats(GlobalName);
+        GlobalStats = StatModifierHolder.GenerateAllStats(GlobalName);
         Locator.ModifierDistributor.Register(GlobalStats);
 
         CreatePlayer();

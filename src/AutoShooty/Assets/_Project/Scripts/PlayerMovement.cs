@@ -1,5 +1,6 @@
 using UnityEngine;
 using QGame;
+using System;
 
 public enum MovementDirection
 {
@@ -11,7 +12,7 @@ public class PlayerMovement : QScript
     [SerializeField]
     float _baseSpeed;
     [SerializeField]
-    float _speedModifier;
+    float _currentSpeed;
 
     MovementDirection _currentDirection;
 
@@ -19,6 +20,12 @@ public class PlayerMovement : QScript
     {
         OnEveryUpdate += CheckMovementKeys;
         OnEveryUpdate += Move;
+        GameManager.GlobalStats.OnUpdateEvent += OnStatUpdate;
+    }
+
+    private void OnStatUpdate(StatModifierHolder holder)
+    {
+        _currentSpeed = _baseSpeed + holder[StatModifierType.MovementSpeed].CurrentValue * _baseSpeed;
     }
 
     private void CheckMovementKeys()
@@ -85,6 +92,6 @@ public class PlayerMovement : QScript
                 break;
         }
         
-        transform.Translate(movement * (_baseSpeed * (1 + _speedModifier)));
+        transform.Translate(movement * _currentSpeed);
     }
 }
