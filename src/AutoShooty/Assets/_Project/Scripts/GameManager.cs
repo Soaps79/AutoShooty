@@ -20,8 +20,8 @@ public class GameManager : QScript
     [SerializeField]
     private PickupReach _pickupReach;
     [SerializeField]
-    private GameObject _playerPrefab;
-    public static GameObject Player { get; private set; }
+    private PlayerAvatar _playerPrefab;
+    public static PlayerAvatar Player { get; private set; }
 
     private void Awake()
     {
@@ -54,8 +54,8 @@ public class GameManager : QScript
     private void CreatePlayer()
     {
         Player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-        Player.name = "player 2222";
-        _pickupReach = Player.GetComponentInChildren<PickupReach>();
+        Player.name = "player";
+        _pickupReach = Player.PickupReach;
         _camera.Follow = Player.transform;
     }
 }
