@@ -1,3 +1,5 @@
+using System;
+
 public enum StatModifierType
 {
     Health,
@@ -24,4 +26,11 @@ public class StatModifier
     public StatModifierType Type;
     public float Amount;
     public string ConsumerId;
+}
+
+[Serializable]
+public class StatAmount
+{
+    public StatModifierType Type;
+    public float Amount;
 }

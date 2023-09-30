@@ -20,7 +20,9 @@ public class GameManager : QScript
     [SerializeField]
     private PickupReach _pickupReach;
     [SerializeField]
-    private PlayerAvatar _playerPrefab;
+    private CharacterConfig _characterConfig;
+
+
     public static PlayerAvatar Player { get; private set; }
 
     private void Awake()
@@ -53,9 +55,15 @@ public class GameManager : QScript
 
     private void CreatePlayer()
     {
-        Player = Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+        Player = Instantiate(_characterConfig.Avatar, Vector3.zero, Quaternion.identity);
         Player.name = "player";
         _pickupReach = Player.PickupReach;
         _camera.Follow = Player.transform;
+
+        foreach(var wep in _characterConfig.StartingWeapons)
+        {
+            var instance = Instantiate(wep, Player.WeaponCaddy.transform);
+            Player.WeaponCaddy.RegisterNewWeapon(instance);
+        }
     }
 }
