@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 1960235941124381961}
   - component: {fileID: 2092801425392812916}
   m_Layer: 7
-  m_Name: avatar-hovertank
+  m_Name: ava-light
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

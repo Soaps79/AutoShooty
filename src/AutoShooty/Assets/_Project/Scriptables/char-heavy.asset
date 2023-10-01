@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a24d45e78ca1db4cb0df96bc5be2bec, type: 3}
-  m_Name: char-one
+  m_Name: char-heavy
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 2092801425392812916, guid: e98f80fc613e4934fa524e96d2a35683, type: 3}
+  Avatar: {fileID: 4209155243673358938, guid: 1760edabbcfc8194187001568c3c9ea8, type: 3}
   StartingWeapons:
   - {fileID: 6739744016473771091, guid: 61ba893a596dd304fbb10ceeb1f858c8, type: 3}
   - {fileID: 5891896183278549323, guid: 8661d9ff185372a4ea3054f8878bde21, type: 3}
   StartingModifiers:
-  - Type: 2
-    Amount: 0.1
-  - Type: 1
+  - Type: 0
     Amount: 0.2
-  - Type: 4
-    Amount: 0.3
+  - Type: 6
+    Amount: 0.2
+  - Type: 7
+    Amount: 0.2
