@@ -34,7 +34,7 @@ public class StutterStep : QScript
         }
         else
         {
-            transform.Translate(_movementDirection * _moveSpeed, Space.World);
+            transform.Translate(_movementDirection * _moveSpeed * Time.deltaTime, Space.World);
             _currentElapsed += Time.deltaTime;
             if(_currentElapsed > _moveLength)
             {

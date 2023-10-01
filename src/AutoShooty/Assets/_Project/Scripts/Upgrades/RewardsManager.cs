@@ -43,6 +43,7 @@ public class RewardsManager : QScript
     {
         _accruedLevel++;
         _currentXp = 0;
+        Time.timeScale = 0;
         OptionsViewModel.TurnOn();
     }
 
@@ -50,5 +51,6 @@ public class RewardsManager : QScript
     {
         Locator.ModifierDistributor.HandleModifier(
             new StatModifier { ConsumerId = GameManager.GlobalName, Type = option.Type, Amount = option.Value });
+        Time.timeScale = 1;
     }
 }

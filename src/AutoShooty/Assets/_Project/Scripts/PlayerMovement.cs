@@ -92,6 +92,6 @@ public class PlayerMovement : QScript
                 break;
         }
         
-        transform.Translate(movement * _currentSpeed);
+        transform.Translate(movement * _currentSpeed * Time.deltaTime);
     }
 }

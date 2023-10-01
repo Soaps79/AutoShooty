@@ -74,12 +74,12 @@ public class RewardsOptionsViewModel : QScript
     private void OnSelection(StatRewardOption option)
     {
         OnRewardChosen?.Invoke(option);
-        _canvasGroup.DOFade(0, _fadeTime).onComplete += () => gameObject.SetActive(false);
+        _canvasGroup.DOFade(0, _fadeTime).SetUpdate(true).onComplete += () => gameObject.SetActive(false);
     }
 
     public void TurnOn()
     {
         gameObject.SetActive(true);
-        _canvasGroup.DOFade(1.0f, _fadeTime);
+        _canvasGroup.DOFade(1.0f, _fadeTime).SetUpdate(true);
     }
 }

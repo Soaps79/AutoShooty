@@ -253,7 +253,7 @@ MonoBehaviour:
   RewardsManager: {fileID: 1653487545}
   _camera: {fileID: 821441432}
   _pickupReach: {fileID: 0}
-  _characterConfig: {fileID: 11400000, guid: d1509eb7c47dac04382a92dbb5ab53f0, type: 2}
+  _characterConfig: {fileID: 11400000, guid: 2dc4fb1a4adf93b4b9efb3595636ccab, type: 2}
 --- !u!114 &204614715
 MonoBehaviour:
   m_ObjectHideFlags: 0

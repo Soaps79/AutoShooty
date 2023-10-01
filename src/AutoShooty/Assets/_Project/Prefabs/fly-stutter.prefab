@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveLength: 0.5
-  _moveSpeed: 0.02
+  _moveSpeed: 10
   _moveDelay: 1
   _isMoving: 0
 --- !u!114 &7147357983994694166
