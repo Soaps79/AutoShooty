@@ -346,7 +346,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3514151, g: 0.38391805, b: 0.5, a: 1}
+    m_NormalColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     m_HighlightedColor: {r: 0.6421324, g: 0.6626329, b: 0.735849, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -416,9 +416,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 261099574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d556898f801d294e9e9a5cdd67d2182, type: 3}
+  m_Script: {fileID: 11500000, guid: 3295e71d8f65d084ba142520616d571f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _reward:
+    Type: 0
+    Rarity: 0
+    Amount: 0
+    TargetId: 
+    IsPercentage: 0
 --- !u!1 &311288136
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,8 +870,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionOne: {fileID: 261099579}
-  _optionTwo: {fileID: 709922304}
-  _optionThree: {fileID: 1170896709}
+  _optionTwo: {fileID: 709922308}
+  _optionThree: {fileID: 1170896713}
+  CommonColor: {r: 1, g: 1, b: 1, a: 1}
+  UncommonColor: {r: 0.25721216, g: 0.7075472, b: 0.23696157, a: 1}
+  RareColor: {r: 0.18801177, g: 0.26609758, b: 0.6132076, a: 1}
+  LegendaryColor: {r: 0.745283, g: 0.6245091, b: 0.20038268, a: 1}
   _fadeTime: 0.2
 --- !u!225 &559772093
 CanvasGroup:
@@ -1095,7 +1105,7 @@ GameObject:
   - component: {fileID: 709922307}
   - component: {fileID: 709922306}
   - component: {fileID: 709922305}
-  - component: {fileID: 709922304}
+  - component: {fileID: 709922308}
   m_Layer: 5
   m_Name: option-two
   m_TagString: Untagged
@@ -1123,18 +1133,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 739.9077, y: 142.7836}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &709922304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709922302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d556898f801d294e9e9a5cdd67d2182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &709922305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,7 +1154,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3514151, g: 0.38391805, b: 0.5, a: 1}
+    m_NormalColor: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
     m_HighlightedColor: {r: 0.6421324, g: 0.6626329, b: 0.735849, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1217,6 +1215,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709922302}
   m_CullTransparentMesh: 1
+--- !u!114 &709922308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709922302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3295e71d8f65d084ba142520616d571f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward:
+    Type: 0
+    Rarity: 0
+    Amount: 0
+    TargetId: 
+    IsPercentage: 0
 --- !u!1 &737266403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,7 +1835,7 @@ GameObject:
   - component: {fileID: 1170896712}
   - component: {fileID: 1170896711}
   - component: {fileID: 1170896710}
-  - component: {fileID: 1170896709}
+  - component: {fileID: 1170896713}
   m_Layer: 5
   m_Name: option-three
   m_TagString: Untagged
@@ -1847,18 +1863,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0, y: -160}
   m_SizeDelta: {x: 739.9077, y: 142.7836}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1170896709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170896707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d556898f801d294e9e9a5cdd67d2182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1170896710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1880,7 +1884,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3514151, g: 0.38391805, b: 0.5, a: 1}
+    m_NormalColor: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
     m_HighlightedColor: {r: 0.6421324, g: 0.6626329, b: 0.735849, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1941,6 +1945,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170896707}
   m_CullTransparentMesh: 1
+--- !u!114 &1170896713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170896707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3295e71d8f65d084ba142520616d571f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward:
+    Type: 0
+    Rarity: 0
+    Amount: 0
+    TargetId: 
+    IsPercentage: 0
 --- !u!1 &1365830820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,13 +2504,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentXp: 0
-  _xpForNextLevel: 10
+  _xpForNextLevel: 4
   _accruedXp: 0
   _accruedLevel: 0
-  Options:
-  - {fileID: 11400000, guid: eeab36254a478f246b8738994159ae07, type: 2}
+  AllTemplates:
+  - {fileID: 11400000, guid: fb4838c583b6e6c4e96a21c4629ba837, type: 2}
+  - {fileID: 11400000, guid: d0a8a043d5a1a314eaaf9e81b30708f8, type: 2}
   - {fileID: 11400000, guid: fc164b460d635044cbf942c406562b91, type: 2}
+  - {fileID: 11400000, guid: cdf893014b10be145803374b292848a1, type: 2}
   - {fileID: 11400000, guid: e51f24187c5e95046bba010857a025db, type: 2}
+  - {fileID: 11400000, guid: eeab36254a478f246b8738994159ae07, type: 2}
+  - {fileID: 11400000, guid: e1bb596cdbb0c5242b3b1ca83d0a3bae, type: 2}
   OptionsViewModel: {fileID: 559772092}
 --- !u!4 &1653487546
 Transform:

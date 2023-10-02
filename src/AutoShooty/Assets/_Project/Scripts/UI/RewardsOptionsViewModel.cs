@@ -1,9 +1,7 @@
 using UnityEngine;
 using QGame;
 using System;
-using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
 using DG.Tweening;
 
 [RequireComponent(typeof(CanvasGroup))]
@@ -14,11 +12,16 @@ public class RewardsOptionsViewModel : QScript
     public Action<StatRewardOption> OnRewardChosen;
 
     [SerializeField]
-    private ButtonWithText _optionOne;
+    private RewardButtonViewModel _optionOne;
     [SerializeField] 
-    private ButtonWithText _optionTwo;
+    private RewardButtonViewModel _optionTwo;
     [SerializeField] 
-    private ButtonWithText _optionThree;
+    private RewardButtonViewModel _optionThree;
+
+    public Color CommonColor;
+    public Color UncommonColor;
+    public Color RareColor;
+    public Color LegendaryColor;
 
     [SerializeField]
     private float _fadeTime;
@@ -28,17 +31,40 @@ public class RewardsOptionsViewModel : QScript
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void Initialize(List<StatRewardOption> options)
+    public void Initialize()
+    {
+        _optionOne.OnChosen += OnSelection;
+        _optionTwo.OnChosen += OnSelection;
+        _optionThree.OnChosen += OnSelection;
+    }
+
+    public void StartChoices(List<StatRewardOption> options)
     {
         if (options.Count != 3)
             throw new UnityException("Rewards UI init'd with not three options");
-        
-        _optionOne.Text.text = GetButtonText(options[0]);
-        _optionOne.Button.onClick.AddListener(() => { OnSelection(options[0]);});
-        _optionTwo.Text.text = GetButtonText(options[1]);
-        _optionTwo.Button.onClick.AddListener(() => { OnSelection(options[1]); });
-        _optionThree.Text.text = GetButtonText(options[2]);
-        _optionThree.Button.onClick.AddListener(() => { OnSelection(options[2]); });
+
+        _optionOne.Setup(options[0], GetButtonText(options[0]), GetRarityColor(options[0].Rarity));
+        _optionTwo.Setup(options[1], GetButtonText(options[1]), GetRarityColor(options[1].Rarity));
+        _optionThree.Setup(options[2], GetButtonText(options[2]), GetRarityColor(options[2].Rarity));
+
+        TurnOn();
+    }
+
+    private Color GetRarityColor(RewardRarity rarity)
+    {
+        switch (rarity)
+        {
+            case RewardRarity.Common:
+                return CommonColor;
+            case RewardRarity.Uncommon:
+                return UncommonColor;
+            case RewardRarity.Rare:
+                return RareColor;
+            case RewardRarity.Legendary:
+                return LegendaryColor;
+            default:
+                return Color.white;
+        }
     }
 
     private string GetButtonText(StatRewardOption option)
@@ -58,17 +84,19 @@ public class RewardsOptionsViewModel : QScript
             case StatModifierType.CritMultiplier:
                 return $"Increase Critical Multiplier by {GetDisplayValue(option)}%";
             case StatModifierType.AreaOfEffect:
-                return $"Increase Are of Effect by {GetDisplayValue(option)}%";
+                return $"Increase Area of Effect by {GetDisplayValue(option)}%";
             case StatModifierType.Multicast:
                 return $"Increase Multicast Chance by {GetDisplayValue(option)}%";
+            case StatModifierType.IncreasedCastSpeed:
+                return $"Increase Cast Frequency by {GetDisplayValue(option)}%";
             default:
-                return "";
+                return "UNKNOWN TYPE";
         }
     }
 
     private float GetDisplayValue(StatRewardOption option)
     {
-        return option.IsPercentage ? option.Value * 100 : option.Value;
+        return option.IsPercentage ? option.Amount * 100 : option.Amount;
     }
 
     private void OnSelection(StatRewardOption option)
@@ -77,7 +105,7 @@ public class RewardsOptionsViewModel : QScript
         _canvasGroup.DOFade(0, _fadeTime).SetUpdate(true).onComplete += () => gameObject.SetActive(false);
     }
 
-    public void TurnOn()
+    private void TurnOn()
     {
         gameObject.SetActive(true);
         _canvasGroup.DOFade(1.0f, _fadeTime).SetUpdate(true);

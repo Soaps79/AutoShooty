@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1294dedd0f5b8c43b53131bc2cf0a35, type: 3}
-  m_Name: stats-movement
+  m_Name: tmp-inc-damage
   m_EditorClassIdentifier: 
-  Type: 1
-  Value: 0.5
+  ModifierType: 3
   IsPercentage: 1
+  CommonAmount: 0.05
+  UncommonAmount: 0.1
+  RareAmount: 0.2
+  LegendaryAmount: 0.4
