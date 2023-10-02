@@ -38,6 +38,9 @@ public class RewardsManager : QScript
 
     public RewardsOptionsViewModel OptionsViewModel;
 
+    [SerializeField]
+    private int _queuedLevelUps;
+
     private void Awake()
     {
         OptionsViewModel.OnRewardChosen += OnRewardChosen;
@@ -50,7 +53,8 @@ public class RewardsManager : QScript
         {
             var remaining = amount - needed;
             _accruedXp += needed;
-            OnXpGain(remaining);
+            if(amount > needed)
+                OnXpGain(remaining);
             LevelUp();
         }
         else
@@ -60,18 +64,19 @@ public class RewardsManager : QScript
         }
     }
 
-    public void ForceLevelUp()
+    public void LevelUp()
     {
-        OnXpGain(_xpForNextLevel - _currentXp);
-    }
-
-    private void LevelUp()
-    {
-        _accruedLevel++;
-        _currentXp = 0;
-        Time.timeScale = 0;
-        OptionsViewModel.Initialize();
-        OptionsViewModel.StartChoices(ChooseOptions());
+        if (!OptionsViewModel.IsChoosing)
+        {
+            _accruedLevel++;
+            _currentXp = 0;
+            Time.timeScale = 0;
+            OptionsViewModel.StartChoices(ChooseOptions());
+        }
+        else
+        {
+            _queuedLevelUps++;
+        }
     }
 
     private List<StatRewardOption> ChooseOptions()
@@ -129,6 +134,16 @@ public class RewardsManager : QScript
     {
         Locator.ModifierDistributor.HandleModifier(
             new StatModifier { ConsumerId = option.TargetId, Type = option.Type, Amount = option.Amount });
-        Time.timeScale = 1;
+
+        if(_queuedLevelUps > 0)
+        {
+            _queuedLevelUps--;
+            LevelUp();
+        }
+        else
+        {
+            OptionsViewModel.TurnOff();
+            Time.timeScale = 1;
+        }
     }
 }

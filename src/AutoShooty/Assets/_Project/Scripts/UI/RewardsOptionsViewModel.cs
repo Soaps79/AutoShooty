@@ -26,12 +26,14 @@ public class RewardsOptionsViewModel : QScript
     [SerializeField]
     private float _fadeTime;
 
+    public bool IsChoosing;
+
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void Initialize()
+    private void Start()
     {
         _optionOne.OnChosen += OnSelection;
         _optionTwo.OnChosen += OnSelection;
@@ -42,6 +44,8 @@ public class RewardsOptionsViewModel : QScript
     {
         if (options.Count != 3)
             throw new UnityException("Rewards UI init'd with not three options");
+
+        IsChoosing = true;
 
         _optionOne.Setup(options[0], GetButtonText(options[0]), GetRarityColor(options[0].Rarity));
         _optionTwo.Setup(options[1], GetButtonText(options[1]), GetRarityColor(options[1].Rarity));
@@ -102,7 +106,15 @@ public class RewardsOptionsViewModel : QScript
     private void OnSelection(StatRewardOption option)
     {
         OnRewardChosen?.Invoke(option);
-        _canvasGroup.DOFade(0, _fadeTime).SetUpdate(true).onComplete += () => gameObject.SetActive(false);
+        IsChoosing = false;
+    }
+
+    public void TurnOff()
+    {
+        _canvasGroup.DOFade(0, _fadeTime).SetUpdate(true).onComplete += () =>
+        {
+            gameObject.SetActive(false);
+        };
     }
 
     private void TurnOn()

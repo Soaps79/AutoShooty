@@ -11,7 +11,7 @@ public class RewardsManagerEditor : Editor
 
         if (GUILayout.Button("Level Up"))
         {
-            manager.ForceLevelUp();
+            manager.LevelUp();
         }
     }
 }
