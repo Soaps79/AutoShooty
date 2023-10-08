@@ -272,6 +272,7 @@ MonoBehaviour:
   _spawnCountIncrement: 2
   _enemyPrefab: {fileID: 7147357983994694166, guid: 5e5e1b2588a245d4db97550569524be3, type: 3}
   _cameraExtents: {fileID: 1539625908}
+  _countSpawned: 0
 --- !u!114 &204614716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2508,8 +2509,8 @@ MonoBehaviour:
   _xpForNextLevel: 4
   _accruedXp: 0
   _accruedLevel: 0
-  _alwaysOfferType: 6
-  _alwaysOfferEnabled: 1
+  _alwaysOfferType: 8
+  _alwaysOfferEnabled: 0
   AllTemplates:
   - {fileID: 11400000, guid: fb4838c583b6e6c4e96a21c4629ba837, type: 2}
   - {fileID: 11400000, guid: d0a8a043d5a1a314eaaf9e81b30708f8, type: 2}

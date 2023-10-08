@@ -62,8 +62,15 @@ public abstract class WeaponBase : QScript
 
     private void RestartTimer(float carriedOver = 0)
     {
+        var increasedCastSpeed = _modifiers[StatModifierType.IncreasedCastSpeed].CurrentValue;
+        if(increasedCastSpeed > 1.8)
+        {
+            increasedCastSpeed = 1.95f;
+            Debug.Log("Cast speed modifier greater than allowed.");
+        }
+
         _elapsedSinceLastFire = carriedOver;
-        var result = _baseCastDelay - _baseCastDelay * _modifiers[StatModifierType.IncreasedCastSpeed].CurrentValue;
+        var result = _baseCastDelay - (_baseCastDelay * increasedCastSpeed) / 2;
         _nextFire = result > 0 ? result : 0;
     }
 

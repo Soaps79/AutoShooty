@@ -1,7 +1,5 @@
 using UnityEngine;
-using QGame;
 using System.Collections.Generic;
-using System;
 
 public class StatModifierDistributor
 {
