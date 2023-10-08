@@ -18,5 +18,12 @@ namespace QGame
                 StopWatch.UpdateNodes(UseTimeModifier ? Time.deltaTime * TimeModifier : Time.deltaTime);
             }
         }
+
+        protected Vector3 GetDirectionToMouse()
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 heading = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
+            return new Vector3(heading.x, heading.y, 0.0f).normalized;
+        }
     }
 }

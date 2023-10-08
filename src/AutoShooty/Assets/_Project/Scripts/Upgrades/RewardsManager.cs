@@ -92,8 +92,8 @@ public class RewardsManager : QScript
                 index = Random.Range(0, AllTemplates.Count);
             }
             while (usedTypes.Contains(index));
-            
-            
+
+            usedTypes.Add(index);
             var choice = ChooseRarity(AllTemplates[index]);
             result.Add(choice);
         }
