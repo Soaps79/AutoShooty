@@ -22,6 +22,8 @@ public class SlashWeapon : WeaponBase
         var spawnLoc = transform.position + (heading * distanceFromCenter);
 
         var proj = Instantiate(prefab, spawnLoc, Quaternion.identity);
+        SetScale(proj.transform);
+
         proj.Combatant.Initialize(_modifiers.GetDamageCalc());
         float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
         proj.transform.eulerAngles = new Vector3(0, 0, angle);

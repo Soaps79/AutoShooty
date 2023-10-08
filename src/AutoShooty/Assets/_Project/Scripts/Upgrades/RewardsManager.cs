@@ -3,6 +3,7 @@ using QGame;
 using System.Collections.Generic;
 using System;
 using Random = UnityEngine.Random;
+using System.Linq;
 
 [Serializable]
 public enum RewardRarity
@@ -33,6 +34,11 @@ public class RewardsManager : QScript
     private int _accruedXp;
     [SerializeField]
     private int _accruedLevel;
+
+    [SerializeField]
+    private StatModifierType _alwaysOfferType;
+    [SerializeField]
+    private bool _alwaysOfferEnabled;
 
     public List<StatRewardTemplate> AllTemplates;
 
@@ -97,6 +103,15 @@ public class RewardsManager : QScript
             var choice = ChooseRarity(AllTemplates[index]);
             result.Add(choice);
         }
+
+        if(_alwaysOfferEnabled)
+        {
+            var template = AllTemplates.FirstOrDefault(i => i.ModifierType == _alwaysOfferType);
+            if (template == null)
+                throw new UnityException($"RewardsManager requested to always offer unknown type {_alwaysOfferType}");
+            result[2] = ChooseRarity(template);
+        }
+
         return result;                
     }
 

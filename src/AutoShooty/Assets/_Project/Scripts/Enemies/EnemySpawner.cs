@@ -22,6 +22,9 @@ public class EnemySpawner : QScript
     private CameraExtents _cameraExtents;
     private PickupsSpawner _pickupsSpawner;
 
+    [SerializeField]
+    private int _countSpawned;
+
     private void Awake()
     {
         _pickupsSpawner = GetComponent<PickupsSpawner>();
@@ -69,6 +72,8 @@ public class EnemySpawner : QScript
             }
 
             var enemy = Instantiate(_enemyPrefab, spawnPos, Quaternion.identity);
+            enemy.name = $"Enemy {++_countSpawned} ({_enemyPrefab.name})";
+
             _pickupsSpawner.Register(enemy.GetComponent<PickupDropper>());
             Locator.MessageHub.QueueMessage(EnemyBase.MessageName, new EnemySpawnedMessageArgs { Enemy = enemy });
         }

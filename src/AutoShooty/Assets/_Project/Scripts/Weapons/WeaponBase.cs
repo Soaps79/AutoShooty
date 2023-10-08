@@ -22,6 +22,7 @@ public abstract class WeaponBase : QScript
     [SerializeField]
     private WeaponStatBase _baseStats;
     protected StatModifierHolder _modifiers;
+    private Stat _aoeModifier;
     
     private float _baseCastDelay;
     private float _elapsedSinceLastFire;
@@ -40,6 +41,11 @@ public abstract class WeaponBase : QScript
     }
 
     protected virtual void OnInitialize() { }
+
+    protected void SetScale(Transform transform)
+    {
+        transform.localScale = transform.localScale + _aoeModifier.CurrentValue * transform.localScale;
+    }
 
     private void UpdateTimer()
     {
@@ -65,6 +71,10 @@ public abstract class WeaponBase : QScript
     // Register the parent on the stats which will combine
     private void SetParents(StatModifierHolder parent)
     {
+        _aoeModifier = parent[StatModifierType.AreaOfEffect];
+        if (_aoeModifier == null)
+            throw new UnityException($"Weapon {Id} given parent with no aoe modifier");
+
         _modifiers[StatModifierType.IncreasedDamage].Parent = parent[StatModifierType.IncreasedDamage];
         _modifiers[StatModifierType.CritChance].Parent = parent[StatModifierType.CritChance];
         _modifiers[StatModifierType.CritMultiplier].Parent = parent[StatModifierType.CritMultiplier];

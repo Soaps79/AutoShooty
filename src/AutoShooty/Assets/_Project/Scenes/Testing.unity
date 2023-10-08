@@ -2508,6 +2508,8 @@ MonoBehaviour:
   _xpForNextLevel: 4
   _accruedXp: 0
   _accruedLevel: 0
+  _alwaysOfferType: 6
+  _alwaysOfferEnabled: 1
   AllTemplates:
   - {fileID: 11400000, guid: fb4838c583b6e6c4e96a21c4629ba837, type: 2}
   - {fileID: 11400000, guid: d0a8a043d5a1a314eaaf9e81b30708f8, type: 2}

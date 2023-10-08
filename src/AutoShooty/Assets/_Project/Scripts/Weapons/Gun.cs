@@ -18,6 +18,7 @@ public class Gun : WeaponBase
     private void FireTowardsMousePointer()
     {
         var proj = Instantiate(_bullet, transform.position, Quaternion.identity);
+        SetScale(proj.transform);
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 heading = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
