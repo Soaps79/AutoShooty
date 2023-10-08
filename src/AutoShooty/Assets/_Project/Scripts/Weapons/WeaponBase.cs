@@ -1,6 +1,5 @@
 using UnityEngine;
 using QGame;
-using System.Collections.Generic;
 using System;
 
 [Serializable]
@@ -14,6 +13,7 @@ public class WeaponStatBase
     public float Multicast;
 
     public float BaseCastDelay;
+    public float MinCastDelay;
 }
 
 public abstract class WeaponBase : QScript
@@ -23,8 +23,12 @@ public abstract class WeaponBase : QScript
     private WeaponStatBase _baseStats;
     protected StatModifierHolder _modifiers;
     private Stat _aoeModifier;
+
+    [SerializeField]
+    private ProjectileBase _projectilePrefab;
     
     private float _baseCastDelay;
+    private float _minCastDelay;
     private float _elapsedSinceLastFire;
     private float _nextFire;
 
@@ -38,15 +42,60 @@ public abstract class WeaponBase : QScript
 
         RestartTimer();
         OnEveryUpdate += UpdateTimer;
+
+        OnInitialize();
     }
 
     protected virtual void OnInitialize() { }
+
+
+    #region projectile spawning
+    // Spawn scaled projectile at current weapon position
+    protected ProjectileBase GetProjectile()
+    {
+        var proj = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
+        proj.InitCombatant();
+        SetScale(proj.transform);
+        proj.Combatant.Initialize(_modifiers.GetDamageCalc());
+        return proj;
+    }
+
+    // Spawn scaled projectile at specified position
+    protected ProjectileBase GetProjectile(Vector3 position)
+    {
+        var proj = Instantiate(_projectilePrefab, position, Quaternion.identity);
+        proj.InitCombatant();
+        SetScale(proj.transform);
+        proj.Combatant.Initialize(_modifiers.GetDamageCalc());
+        return proj;
+    }
+
+    // Spawn scaled projectile at specified position with rotation
+    protected ProjectileBase GetProjectile(Vector3 position, Vector3 heading)
+    {
+        var proj = GetProjectile(position);
+        float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
+        proj.transform.eulerAngles = new Vector3(0, 0, angle);
+        return proj;
+    }
+
+    // Spawn scaled projectile at position facing mouse pointer
+    protected ProjectileBase GetProjectileFacingMousePointer(Vector3 position)
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 heading = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
+        heading = new Vector3(heading.x, heading.y, 0.0f).normalized;
+        var proj = GetProjectile(position, heading);
+        return proj;
+    }
 
     protected void SetScale(Transform transform)
     {
         transform.localScale = transform.localScale + _aoeModifier.CurrentValue * transform.localScale;
     }
+    #endregion
 
+    #region fire timing
     private void UpdateTimer()
     {
         _elapsedSinceLastFire += Time.deltaTime;
@@ -63,18 +112,19 @@ public abstract class WeaponBase : QScript
     private void RestartTimer(float carriedOver = 0)
     {
         var increasedCastSpeed = _modifiers[StatModifierType.IncreasedCastSpeed].CurrentValue;
-        if(increasedCastSpeed > 1.8)
+        var result = _baseCastDelay - (_baseCastDelay * increasedCastSpeed) / 2;
+
+        if (result < _minCastDelay)
         {
-            increasedCastSpeed = 1.95f;
-            Debug.Log("Cast speed modifier greater than allowed.");
+            Debug.Log($"Cast speed less than allowed for weapon: {Id}");
         }
 
         _elapsedSinceLastFire = carriedOver;
-        var result = _baseCastDelay - (_baseCastDelay * increasedCastSpeed) / 2;
-        _nextFire = result > 0 ? result : 0;
+        _nextFire = result >= _minCastDelay ? result : _minCastDelay;
     }
+    #endregion
 
-// This is where the design decisions re: how global vs local stats are handled
+    // This is where the design decisions re: how global vs local stats are handled
     // Register the parent on the stats which will combine
     private void SetParents(StatModifierHolder parent)
     {
@@ -93,6 +143,7 @@ public abstract class WeaponBase : QScript
     private void SetStatsToBase()
     {
         _baseCastDelay = _baseStats.BaseCastDelay;
+        _minCastDelay = _baseStats.MinCastDelay;
         _modifiers[StatModifierType.MoreDamage].LocalValue = _baseStats.Damage;
         _modifiers[StatModifierType.CritChance].LocalValue = _baseStats.CritChance;
         _modifiers[StatModifierType.CritMultiplier].LocalValue = _baseStats.CritMultiplier;

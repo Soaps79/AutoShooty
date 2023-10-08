@@ -51,6 +51,7 @@ MonoBehaviour:
     IncreasedCastSpeed: 0
     AreaOfEffect: 0
     Multicast: 0
-    BaseCastDelay: 1.2
-  _bullet: {fileID: 957465627065024105, guid: d22e1b5641ef9a04885e72734a55e92b, type: 3}
+    BaseCastDelay: 1.8
+    MinCastDelay: 0.3
+  _projectilePrefab: {fileID: 957465627065024105, guid: d22e1b5641ef9a04885e72734a55e92b, type: 3}
   _bulletSpeed: 30

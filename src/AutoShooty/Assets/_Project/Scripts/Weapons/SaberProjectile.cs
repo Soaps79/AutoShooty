@@ -4,7 +4,7 @@ using DG.Tweening;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent (typeof(Combatant))]
-public class SaberProjectile : QScript
+public class SaberProjectile : ProjectileBase
 {
     [SerializeField]
     private Vector3 _origin;
@@ -19,15 +19,11 @@ public class SaberProjectile : QScript
 
     [SerializeField]
     private float _localRotationSpeed;
-    
-    public Combatant Combatant { get; private set; }
 
     private void Awake()
     {
         OnEveryUpdate += Spiral;
         OnEveryUpdate += Spin;
-
-        Combatant = GetComponent<Combatant>();
     }
 
     public void Initialize(ProjectileConfig config, Vector3 position)

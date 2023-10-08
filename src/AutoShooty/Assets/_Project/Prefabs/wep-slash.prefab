@@ -51,6 +51,7 @@ MonoBehaviour:
     IncreasedCastSpeed: 0
     AreaOfEffect: 0
     Multicast: 0
-    BaseCastDelay: 1
+    BaseCastDelay: 2
+    MinCastDelay: 0.2
+  _projectilePrefab: {fileID: 7831634493319456530, guid: 2755df82eb48f244ea672956c0743bc2, type: 3}
   distanceFromCenter: 5
-  prefab: {fileID: 7831634493319456530, guid: 2755df82eb48f244ea672956c0743bc2, type: 3}

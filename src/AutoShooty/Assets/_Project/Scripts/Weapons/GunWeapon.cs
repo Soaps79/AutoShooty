@@ -1,10 +1,7 @@
 using UnityEngine;
-using QGame;
 
-public class Gun : WeaponBase
+public class GunWeapon : WeaponBase
 {
-    [SerializeField]
-    private Bullet _bullet;
     [SerializeField]
     private float _bulletSpeed;
 
@@ -17,17 +14,8 @@ public class Gun : WeaponBase
 
     private void FireTowardsMousePointer()
     {
-        var proj = Instantiate(_bullet, transform.position, Quaternion.identity);
-        SetScale(proj.transform);
-
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 heading = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
-        heading = new Vector3(heading.x, heading.y, 0.0f).normalized;
-
-        float angle = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
-        proj.transform.eulerAngles = new Vector3(0, 0, angle);
+        var proj = GetProjectileFacingMousePointer(transform.position) as GunProjectile;
         proj.Initialize(_bulletSpeed);
-        proj.Combatant.Initialize(_modifiers.GetDamageCalc());
     }
 
     // random direction

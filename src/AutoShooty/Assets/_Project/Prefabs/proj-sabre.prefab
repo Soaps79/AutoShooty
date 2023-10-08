@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2701080049437210969}
   - component: {fileID: 3355632015499148847}
   m_Layer: 0
-  m_Name: sabre-projectile
+  m_Name: proj-sabre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
